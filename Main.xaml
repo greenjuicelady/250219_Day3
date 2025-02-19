@@ -170,7 +170,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <State.Transitions>
-                  <Transition DisplayName="결제 실패" sap:VirtualizedContainerService.HintSize="460,519" sap2010:WorkflowViewState.IdRef="Transition_4">
+                  <Transition DisplayName="결제 실패" sap:VirtualizedContainerService.HintSize="450,519" sap2010:WorkflowViewState.IdRef="Transition_4">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:PointCollection x:Key="ConnectorLocation">395,395 407.5,395 407.5,300 347.5,300 347.5,330</av:PointCollection>
@@ -182,10 +182,10 @@
                       <x:Reference>__ReferenceID1</x:Reference>
                     </Transition.To>
                     <Transition.Action>
-                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="357,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;결제를 취소했습니다.&quot;]" />
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="347,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;결제를 취소했습니다.&quot;]" />
                     </Transition.Action>
                     <Transition.Condition>
-                      <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;No&quot; or Checkbtn + Checkbtn = &quot; Cancel&quot;" />
+                      <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;No&quot; or  Checkbtn = &quot; Cancel&quot;" />
                     </Transition.Condition>
                   </Transition>
                   <Transition DisplayName="결제 성공" sap:VirtualizedContainerService.HintSize="450,519" sap2010:WorkflowViewState.IdRef="Transition_5">
@@ -216,7 +216,7 @@
                                   <ui:MessageBox Caption="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" ChosenButton="[Checkbtn]" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[&quot;재조중입니다.&quot;]" />
                                 </Sequence>
                               </Switch.Default>
-                              <Sequence x:Key="아메리카노" DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,282" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                              <Sequence x:Key="라떼" DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,282" sap2010:WorkflowViewState.IdRef="Sequence_5">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -288,7 +288,7 @@
                               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="347,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Error" Message="[&quot;재고가 없습니다.&quot;]" />
                             </Transition.Action>
                             <Transition.Condition>
-                              <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;No&quot;" />
+                              <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;No&quot; or Checkbtn = &quot;cancel&quot;" />
                             </Transition.Condition>
                           </Transition>
                         </State.Transitions>
