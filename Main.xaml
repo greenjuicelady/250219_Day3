@@ -75,19 +75,19 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="988,466.82399999999996" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="988,421.82399999999996" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <StateMachine InitialState="{x:Reference __ReferenceID0}" DisplayName="State Machine" sap:VirtualizedContainerService.HintSize="988,467" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+    <StateMachine InitialState="{x:Reference __ReferenceID0}" DisplayName="State Machine" sap:VirtualizedContainerService.HintSize="988,422" sap2010:WorkflowViewState.IdRef="StateMachine_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <av:Point x:Key="ShapeLocation">285,35</av:Point>
           <x:Double x:Key="StateContainerWidth">840</x:Double>
-          <x:Double x:Key="StateContainerHeight">435</x:Double>
+          <x:Double x:Key="StateContainerHeight">580</x:Double>
           <av:PointCollection x:Key="ConnectorLocation">310,85 310,155</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -144,12 +144,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Transition.To>
-              <State x:Name="__ReferenceID1" DisplayName="결제 상태" sap:VirtualizedContainerService.HintSize="496,831" sap2010:WorkflowViewState.IdRef="State_3">
+              <State x:Name="__ReferenceID1" DisplayName="결제 상태" sap:VirtualizedContainerService.HintSize="190,100" sap2010:WorkflowViewState.IdRef="State_3">
                 <State.Entry>
                   <Sequence DisplayName="결제하기" sap:VirtualizedContainerService.HintSize="450,492" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="PayStatus" />
-                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,7 +157,7 @@
                         <OutArgument x:TypeArguments="x:String">[PayStatus]</OutArgument>
                       </ui:InputDialog.Result>
                     </ui:InputDialog>
-                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;선택한 결제 방식이&quot; + PayStatus + &quot;맞나요?&quot;]" />
+                    <ui:MessageBox Caption="{x:Null}" AutoCloseAfter="00:00:00" Buttons="YesNoCancel" ChosenButton="[Checkbtn]" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;선택한 결제 방식이&quot; + PayStatus + &quot;맞나요?&quot;]" />
                   </Sequence>
                 </State.Entry>
                 <sap:WorkflowViewStateService.ViewState>
@@ -172,10 +169,143 @@
                     <x:Double x:Key="StateContainerHeight">69.25600000000009</x:Double>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
+                <State.Transitions>
+                  <Transition DisplayName="결제 실패" sap:VirtualizedContainerService.HintSize="460,519" sap2010:WorkflowViewState.IdRef="Transition_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <av:PointCollection x:Key="ConnectorLocation">395,395 407.5,395 407.5,300 347.5,300 347.5,330</av:PointCollection>
+                        <x:Int32 x:Key="SrcConnectionPointIndex">48</x:Int32>
+                        <x:Int32 x:Key="DestConnectionPointIndex">58</x:Int32>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Transition.To>
+                      <x:Reference>__ReferenceID1</x:Reference>
+                    </Transition.To>
+                    <Transition.Action>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="357,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;결제를 취소했습니다.&quot;]" />
+                    </Transition.Action>
+                    <Transition.Condition>
+                      <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;No&quot; or Checkbtn + Checkbtn = &quot; Cancel&quot;" />
+                    </Transition.Condition>
+                  </Transition>
+                  <Transition DisplayName="결제 성공" sap:VirtualizedContainerService.HintSize="450,519" sap2010:WorkflowViewState.IdRef="Transition_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <av:PointCollection x:Key="ConnectorLocation">309.5,430 309.5,480</av:PointCollection>
+                        <x:Int32 x:Key="SrcConnectionPointIndex">43</x:Int32>
+                        <x:Int32 x:Key="DestConnectionPointIndex">42</x:Int32>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Transition.To>
+                      <State x:Name="__ReferenceID2" DisplayName="제조단계" sap:VirtualizedContainerService.HintSize="190,100" sap2010:WorkflowViewState.IdRef="State_6">
+                        <State.Entry>
+                          <Sequence sap:VirtualizedContainerService.HintSize="504,717" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[MenuOrder]" sap:VirtualizedContainerService.HintSize="470,657" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                              <Switch.Default>
+                                <Sequence DisplayName="기본값" sap:VirtualizedContainerService.HintSize="468,168" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:MessageBox Caption="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" ChosenButton="[Checkbtn]" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[&quot;재조중입니다.&quot;]" />
+                                </Sequence>
+                              </Switch.Default>
+                              <Sequence x:Key="아메리카노" DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,282" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:03" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,117" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;해당 음료는 재고가 없습니다. 다시 주문해주세요.&quot;]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[Checkbtn]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">No</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </Switch>
+                          </Sequence>
+                        </State.Entry>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <av:Point x:Key="ShapeLocation">205,480</av:Point>
+                            <av:Size x:Key="ShapeSize">190,100</av:Size>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Double x:Key="StateContainerWidth">178</x:Double>
+                            <x:Double x:Key="StateContainerHeight">69.0560000000005</x:Double>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <State.Transitions>
+                          <Transition DisplayName="제조 완성" sap:VirtualizedContainerService.HintSize="450,519" sap2010:WorkflowViewState.IdRef="Transition_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <av:PointCollection x:Key="ConnectorLocation">395,515 425,515 425,506 475,506</av:PointCollection>
+                                <x:Int32 x:Key="SrcConnectionPointIndex">24</x:Int32>
+                                <x:Int32 x:Key="DestConnectionPointIndex">45</x:Int32>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Transition.To>
+                              <State x:Name="__ReferenceID3" DisplayName="Final State" sap:VirtualizedContainerService.HintSize="150,60" sap2010:WorkflowViewState.IdRef="State_7" IsFinal="True">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <av:Point x:Key="ShapeLocation">475,470</av:Point>
+                                    <av:Size x:Key="ShapeSize">150,60</av:Size>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    <x:Double x:Key="StateContainerWidth">138</x:Double>
+                                    <x:Double x:Key="StateContainerHeight">29</x:Double>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </State>
+                            </Transition.To>
+                            <Transition.Action>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="347,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;제조가 완성되었습니다.&quot;]" />
+                            </Transition.Action>
+                            <Transition.Condition>
+                              <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;OK&quot;" />
+                            </Transition.Condition>
+                          </Transition>
+                          <Transition DisplayName="재고 부족" sap:VirtualizedContainerService.HintSize="450,519" sap2010:WorkflowViewState.IdRef="Transition_6">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <av:PointCollection x:Key="ConnectorLocation">205,540 175,540 175,226.5 215,226.5</av:PointCollection>
+                                <x:Int32 x:Key="SrcConnectionPointIndex">45</x:Int32>
+                                <x:Int32 x:Key="DestConnectionPointIndex">49</x:Int32>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Transition.To>
+                              <x:Reference>__ReferenceID0</x:Reference>
+                            </Transition.To>
+                            <Transition.Action>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="347,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Error" Message="[&quot;재고가 없습니다.&quot;]" />
+                            </Transition.Action>
+                            <Transition.Condition>
+                              <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;No&quot;" />
+                            </Transition.Condition>
+                          </Transition>
+                        </State.Transitions>
+                      </State>
+                    </Transition.To>
+                    <Transition.Action>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="347,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[PayStatus + &quot;를 선택했습니다.&quot;]" />
+                    </Transition.Action>
+                    <Transition.Condition>
+                      <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn = &quot;Yes&quot;" />
+                    </Transition.Condition>
+                  </Transition>
+                </State.Transitions>
               </State>
             </Transition.To>
             <Transition.Action>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="347,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;주문이 완료되었습니다.&quot;]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="347,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;선택하신 메뉴 &quot;+MenuOrder+&quot;가 선택되었습니다.&quot;]" />
             </Transition.Action>
             <Transition.Condition>
               <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Checkbtn =&quot; Yes&quot;" />
@@ -184,20 +314,12 @@
         </State.Transitions>
       </State>
       <x:Reference>__ReferenceID1</x:Reference>
-      <State DisplayName="Final State" sap:VirtualizedContainerService.HintSize="200,110" sap2010:WorkflowViewState.IdRef="State_5" IsFinal="True">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">640,95</av:Point>
-            <av:Size x:Key="ShapeSize">200,110</av:Size>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            <x:Double x:Key="StateContainerWidth">188</x:Double>
-            <x:Double x:Key="StateContainerHeight">79.25600000000009</x:Double>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </State>
+      <x:Reference>__ReferenceID2</x:Reference>
+      <x:Reference>__ReferenceID3</x:Reference>
       <StateMachine.Variables>
         <Variable x:TypeArguments="x:String" Name="Checkbtn" />
         <Variable x:TypeArguments="x:String" Name="MenuOrder" />
+        <Variable x:TypeArguments="x:String" Name="PayStatus" />
       </StateMachine.Variables>
     </StateMachine>
   </Sequence>
